@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<projectSpec>
+        <project
+        name="test_c2000"
+        outputFormat="COFF"
+        device="TMS320F28379D"
+        cgtVersion="22.6.0.LTS"
+        launchWizard="False"
+        linkerCommandFile=""
+        >
+<pathVariable name="C2000WAREINSTALLDIR" path="D:\C2000Ware_5_02_00_00" scope="project" />
+<pathVariable name="CCSProjectFolder" path="D:\BEngTech(Hons)\2025\2nd_Semester\Digital-Twin-Modelling\Project\Tests\test_c2000_ert_rtw\CCS_Project" scope="project" />
+    <configuration name="CPU1_FLASH" compilerBuildOptions=" --abi=coffabi -s -v28 -ml --abi=coffabi --preproc_dependency=$(@:%.obj=%.dep) --preproc_with_compile -IC:\ProgramData\MATLAB\tic2000\3P.instrset\tic28xcodegentools.instrset\ti-cgt-c2000_22.6.0.LTS\include -v28 --float_support=fpu32 -ml -DF28379D -DCPU1 -DBOOT_FROM_FLASH=1 --tmu_support=tmu0 --fp_mode=relaxed -DSHIFT_IQMATH_RAMFUNCS --define EXTMODE_DISABLEPRINTF -DCPU_RAMLS_PROG_START=0x8000 -DCPU_RAMLS_PROG_LENGTH=0x1800 -DCLA_RAMLS_PROG_START=0xA000 -DCLA_RAMLS_PROG_LENGTH=0x1000 -DCLA_RAMLS_DATA_START=0x9800 -DCLA_RAMLS_DATA_LENGTH=0x800 -I${CCSProjectFolder}\..\.. -I${CCSProjectFolder}\.. -IE:\MATLAB\extern\include -IE:\MATLAB\simulink\include -IE:\MATLAB\rtw\c\src -IE:\MATLAB\rtw\c\src\ext_mode\common -IE:\MATLAB\rtw\c\ert -IE:\MATLAB\toolbox\coder\xcp\src\target\server\include -IE:\MATLAB\toolbox\coder\xcp\src\target\server\common -IE:\MATLAB\toolbox\coder\xcp\src\target\server\protocol\src -IE:\MATLAB\toolbox\coder\xcp\src\target\server\protocol\include -IE:\MATLAB\toolbox\coder\xcp\src\target\server\transport\include -IE:\MATLAB\toolbox\coder\xcp\src\target\server\transport\src -IE:\MATLAB\toolbox\coder\xcp\src\target\server\platform\include -IE:\MATLAB\toolbox\coder\xcp\src\target\server\platform\default -IE:\MATLAB\toolbox\coder\xcp\src\target\ext_mode\include -IE:\MATLAB\toolbox\coder\xcp\src\target\ext_mode\src -IE:\MATLAB\toolbox\coder\rtiostream\src -IE:\MATLAB\toolbox\c2b\tic2000\inc -IE:\MATLAB\toolbox\shared\can\src\scanutil -IE:\MATLAB\toolbox\c2b\tic2000\src -IE:\MATLAB\toolbox\c2b\tic2000_shared\src -IE:\MATLAB\toolbox\c2b\tic2000_shared\inc -I${CCSProjectFolder}\..\..\..\..\..\..\..\..\C2000Ware_5_02_00_00\libraries\calibration\hrpwm\f2837xd\include -I${CCSProjectFolder}\..\..\..\..\..\..\..\..\C2000Ware_5_02_00_00\driverlib\f2837xd\driverlib -I${CCSProjectFolder}\..\..\..\..\..\..\..\..\C2000Ware_5_02_00_00\driverlib\f2837xd\driverlib\inc -I${CCSProjectFolder}\..\..\..\..\..\..\..\..\C2000Ware_5_02_00_00\device_support\f2837xd\common\include -I${CCSProjectFolder}\..\..\..\..\..\..\..\..\C2000Ware_5_02_00_00\device_support\f2837xd\headers\include -I${CCSProjectFolder}\..\..\..\..\..\..\..\..\C2000Ware_5_02_00_00\device_support\f2837xd\common -I${CCSProjectFolder}\..\..\..\..\..\..\..\..\C2000Ware_5_02_00_00\libraries\math\IQmath\c28\include -I${CCSProjectFolder}\..\..\..\..\..\..\..\..\C2000Ware_5_02_00_00\libraries\math\CLAmath\c28\include -IE:\MATLAB\toolbox\c2b\tic2000_soc\src -IE:\MATLAB\toolbox\c2b\tic2000_soc\inc -DXCP_EXTMODE_SIMULATION_TIME_IN_TICKS -DMODEL=test_c2000 -DNUMST=1 -DNCSTATES=0 -DHAVESTDIO -DMODEL_HAS_DYNAMICALLY_LOADED_SFCNS=0 -DXCP_DAQ_SUPPORT -DXCP_CALIBRATION_SUPPORT -DXCP_TIMESTAMP_SUPPORT -DXCP_TIMESTAMP_BASED_ON_SIMULATION_TIME -DXCP_SET_MTA_SUPPORT -DEXTMODE_XCP_TRIGGER_SUPPORT -DXCP_ADDRESS_GRANULARITY=XCP_ADDRESS_GRANULARITY_WORD -DCODERTARGET_XCP_DAQ_PACKED_MODE -DCODERTARGET_XCP_MAX_CONTIGUOUS_SAMPLES=8 -DXCP_MEM_BLOCK_1_SIZE=32 -DXCP_MEM_BLOCK_1_NUMBER=1 -DXCP_MEM_BLOCK_2_SIZE=56 -DXCP_MEM_BLOCK_2_NUMBER=1 -DXCP_MEM_BLOCK_3_SIZE=8 -DXCP_MEM_BLOCK_3_NUMBER=1 -DXCP_MEM_RESERVED_POOLS_TOTAL_SIZE=325 -DXCP_MEM_RESERVED_POOLS_NUMBER=2 -DXCP_MEM_DAQ_RESERVED_POOL_BLOCKS_NUMBER=3 -DXCP_MEM_DAQ_RESERVED_POOLS_NUMBER=1 -DXCP_MIN_EVENT_NO_RESERVED_POOL=1 -DXCP_MAX_CTO_SIZE=32 -DXCP_MAX_DTO_SIZE=65532 -DXCP_MAX_ODT_ENTRY_SIZE=255 -DEXTMODE_STATIC -DEXTMODE_STATIC_SIZE=10000 -DON_TARGET_WAIT_FOR_START=0 -DCLASSIC_INTERFACE=0 -DALLOCATIONFCN=0 -DTID01EQ=0 -DTERMFCN=1 -DONESTEPFCN=1 -DMAT_FILE=0 -DMULTI_INSTANCE_CODE=0 -DEXT_MODE=1 -DINTEGER_CODE=0 -DMT=0 -DXCP_CUSTOM_PLATFORM -DEXTMODE_DISABLE_ARGS_PROCESSING=1 -DMW_PIL_SCIFIFOLEN=16 -DF2837X_REG_FORMAT -DMW_F2837XD -DSTACK_SIZE=1024 -D__MW_TARGET_USE_HARDWARE_RESOURCES_H__ -DRT -DF28379D -DCPU1 -DBOOT_FROM_FLASH=1 -DSHIFT_IQMATH_RAMFUNCS -DCPU_RAMLS_PROG_START=0x8000 -DCPU_RAMLS_PROG_LENGTH=0x1800 -DCLA_RAMLS_PROG_START=0xA000 -DCLA_RAMLS_PROG_LENGTH=0x1000 -DCLA_RAMLS_DATA_START=0x9800 -DCLA_RAMLS_DATA_LENGTH=0x800" linkerBuildOptions="  --stack_size=1024 --warn_sections --heap_size=1024 --reread_libs --rom_model --priority -mtest_c2000.map  --define F28379D --define CPU1 --define BOOT_FROM_FLASH=1 --define BOOT_USING_BL=0 --define SHIFT_IQMATH_RAMFUNCS --define CPU_RAMLS_PROG_START=0x8000 --define CPU_RAMLS_PROG_LENGTH=0x1800 --define CLA_RAMLS_PROG_START=0xA000 --define CLA_RAMLS_PROG_LENGTH=0x1000 --define CLA_RAMLS_DATA_START=0x9800 --define CLA_RAMLS_DATA_LENGTH=0x800" />
+    <file action="link" path="E:\MATLAB\toolbox\coder\xcp\src\target\ext_mode\src\xcp_ext_mode.c" targetDirectory=""/>
+    <file action="link" path="..\MW_c28xx_csl.c" targetDirectory=""/>
+    <file action="link" path="..\MW_c28xx_board.c" targetDirectory=""/>
+    <file action="link" path="..\ert_main.c" targetDirectory=""/>
+    <file action="link" path="..\test_c2000.c" targetDirectory=""/>
+    <file action="link" path="E:\MATLAB\toolbox\coder\xcp\src\target\ext_mode\src\xcp_ext_common.c" targetDirectory=""/>
+    <file action="link" path="E:\MATLAB\toolbox\coder\xcp\src\target\ext_mode\src\xcp_ext_classic_trigger.c" targetDirectory=""/>
+    <file action="link" path="E:\MATLAB\toolbox\coder\xcp\src\target\server\protocol\src\xcp.c" targetDirectory=""/>
+    <file action="link" path="E:\MATLAB\toolbox\coder\xcp\src\target\server\protocol\src\xcp_standard.c" targetDirectory=""/>
+    <file action="link" path="E:\MATLAB\toolbox\coder\xcp\src\target\server\protocol\src\xcp_daq.c" targetDirectory=""/>
+    <file action="link" path="E:\MATLAB\toolbox\coder\xcp\src\target\server\protocol\src\xcp_calibration.c" targetDirectory=""/>
+    <file action="link" path="E:\MATLAB\toolbox\coder\xcp\src\target\server\transport\src\xcp_fifo.c" targetDirectory=""/>
+    <file action="link" path="E:\MATLAB\toolbox\coder\xcp\src\target\server\transport\src\xcp_transport.c" targetDirectory=""/>
+    <file action="link" path="E:\MATLAB\toolbox\coder\xcp\src\target\server\platform\default\xcp_mem_default.c" targetDirectory=""/>
+    <file action="link" path="E:\MATLAB\toolbox\coder\xcp\src\target\server\platform\default\xcp_drv_rtiostream.c" targetDirectory=""/>
+    <file action="link" path="E:\MATLAB\toolbox\coder\xcp\src\target\server\common\xcp_utils.c" targetDirectory=""/>
+    <file action="link" path="E:\MATLAB\toolbox\coder\xcp\src\target\server\transport\src\xcp_frame_serial.c" targetDirectory=""/>
+    <file action="link" path="E:\MATLAB\toolbox\coder\xcp\src\target\ext_mode\src\xcp_ext_param_default_serial.c" targetDirectory=""/>
+    <file action="link" path="C2000WAREINSTALLDIR\driverlib\f2837xd\driverlib\sysctl.c" targetDirectory=""/>
+    <file action="link" path="E:\MATLAB\toolbox\c2b\tic2000_shared\src\c2837xDBoard_Realtime_Support.c" targetDirectory=""/>
+    <file action="link" path="E:\MATLAB\toolbox\c2b\tic2000_shared\src\MW_c28xGlobalInterrupts.c" targetDirectory=""/>
+    <file action="link" path="E:\MATLAB\toolbox\c2b\tic2000\src\c2837xDInit.c" targetDirectory=""/>
+    <file action="link" path="C2000WAREINSTALLDIR\driverlib\f2837xd\driverlib\dma.c" targetDirectory=""/>
+    <file action="link" path="C2000WAREINSTALLDIR\device_support\f2837xd\common\source\F2837xD_CpuTimers.c" targetDirectory=""/>
+    <file action="link" path="C2000WAREINSTALLDIR\device_support\f2837xd\common\source\F2837xD_DefaultISR.c" targetDirectory=""/>
+    <file action="link" path="C2000WAREINSTALLDIR\device_support\f2837xd\headers\source\F2837xD_GlobalVariableDefs.c" targetDirectory=""/>
+    <file action="link" path="C2000WAREINSTALLDIR\device_support\f2837xd\common\source\F2837xD_PieCtrl.c" targetDirectory=""/>
+    <file action="link" path="C2000WAREINSTALLDIR\device_support\f2837xd\common\source\F2837xD_PieVect.c" targetDirectory=""/>
+    <file action="link" path="C2000WAREINSTALLDIR\device_support\f2837xd\common\source\F2837xD_SysCtrl.c" targetDirectory=""/>
+    <file action="link" path="C2000WAREINSTALLDIR\device_support\f2837xd\common\source\F2837xD_usDelay.asm" targetDirectory=""/>
+    <file action="link" path="C2000WAREINSTALLDIR\device_support\f2837xd\common\source\F2837xD_CodeStartBranch.asm" targetDirectory=""/>
+    <file action="link" path="C2000WAREINSTALLDIR\device_support\f2837xd\common\source\F2837xD_Dma.c" targetDirectory=""/>
+    <file action="link" path="C2000WAREINSTALLDIR\device_support\f2837xd\common\source\F2837xD_Adc.c" targetDirectory=""/>
+    <file action="link" path="C2000WAREINSTALLDIR\device_support\f2837xd\common\source\F2837xD_Gpio.c" targetDirectory=""/>
+    <file action="link" path="C2000WAREINSTALLDIR\device_support\f2837xd\common\source\F2837xD_Ipc_Driver_Lite.c" targetDirectory=""/>
+    <file action="link" path="E:\MATLAB\toolbox\c2b\tic2000\src\c2000HardwareTimerConfig.c" targetDirectory=""/>
+    <file action="link" path="E:\MATLAB\toolbox\c2b\tic2000_shared\src\MW_c28xGPIO.c" targetDirectory=""/>
+    <file action="link" path="C2000WAREINSTALLDIR\driverlib\f2837xd\driverlib\clb.c" targetDirectory=""/>
+    <file action="link" path="C2000WAREINSTALLDIR\libraries\dsp\FPU\c28\source\fpu32\utility\memcpy_fast.asm" targetDirectory=""/>
+    <file action="link" path="E:\MATLAB\toolbox\c2b\tic2000_shared\src\c2837xDSchedulerTimer0.c" targetDirectory=""/>
+    <file action="link" path="E:\MATLAB\toolbox\c2b\tic2000_shared\src\rtiostream_serial_c28x.c" targetDirectory=""/>
+    <file action="link" path="E:\MATLAB\toolbox\c2b\tic2000_shared\src\datamodify_xcp.c" targetDirectory=""/>
+    <file action="link" path="E:\MATLAB\toolbox\c2b\tic2000\src\c2000HardwareTimerSupport.c" targetDirectory=""/>
+    <file action="link" path="E:\MATLAB\toolbox\c2b\tic2000_soc\src\mw_soc_c2000_ipc.c" targetDirectory=""/>
+    <file action="link" path="C2000WAREINSTALLDIR\libraries\math\IQmath\c28\lib\IQmath_fpu32.lib" targetDirectory="" applicableConfigurations="CPU1_FLASH"/>
+    <file action="link" path="E:\MATLAB\toolbox\c2b\tic2000_shared\src\c2837xDPeripherals.cmd" targetDirectory="" applicableConfigurations="CPU1_FLASH"/>
+    <file action="link" path="E:\MATLAB\toolbox\c2b\tic2000\src\c28377D.cmd" targetDirectory="" applicableConfigurations="CPU1_FLASH"/>
+    <file action="link" path="C:\PROGRA~3\MATLAB\tic2000\3P778C~1.INS\TIC28X~1.INS\TI-CGT~1.LTS\lib\rts2800_fpu32.lib" targetDirectory="" applicableConfigurations="CPU1_FLASH"/>
+<file action="link" path="E:\MATLAB\toolbox\c2b\tic2000/CCS_Config/f28379D.ccxml" targetDirectory="" />
+  </project>
+</projectSpec>

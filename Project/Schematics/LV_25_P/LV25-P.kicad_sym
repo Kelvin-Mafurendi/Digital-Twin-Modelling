@@ -1,0 +1,62 @@
+
+(kicad_symbol_lib (version 20211014) (generator kicad_symbol_editor)
+  (symbol "LV25-P" (pin_names (offset 1.016)) (in_bom yes) (on_board yes)
+    (property "Reference" "T" (id 0) (at -10.16 8.128 0)
+      (effects (font (size 1.27 1.27)) (justify bottom left))
+    )
+    (property "Value" "LV25-P" (id 1) (at -10.16 -10.16 0)
+      (effects (font (size 1.27 1.27)) (justify bottom left))
+    )
+    (property "Footprint" "LV25-P:XDCR_LV25-P" (id 2) (at 0 0 0)
+      (effects (font (size 1.27 1.27)) (justify bottom) hide)
+    )
+    (property "MANUFACTURER" "LEM" (id 4) (at 0 0 0)
+      (effects (font (size 1.27 1.27)) (justify bottom) hide)
+    )
+    (symbol "LV25-P_0_0"
+      (rectangle (start -10.16 -7.62) (end 10.16 7.62)
+        (stroke (width 0.254)) (fill (type background))
+      )
+      (pin output line (at 12.7 -5.08 180.0) (length 2.54)
+        (name "M"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "3"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin output line (at 12.7 5.08 180.0) (length 2.54)
+        (name "-"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "5"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin output line (at 12.7 0.0 180.0) (length 2.54)
+        (name "+"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "4"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin input line (at -12.7 2.54 0) (length 2.54)
+        (name "+HT"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "2"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin input line (at -12.7 -2.54 0) (length 2.54)
+        (name "-HT"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "1"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+    )
+  )
+)
