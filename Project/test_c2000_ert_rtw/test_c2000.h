@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'test_c2000'.
  *
- * Model version                  : 1.3
- * Simulink Coder version         : 24.2 (R2024b) 21-Jun-2024
- * C/C++ source code generated on : Wed Aug 20 12:15:41 2025
+ * Model version                  : 2.27
+ * Simulink Coder version         : 25.1 (R2025a) 21-Nov-2024
+ * C/C++ source code generated on : Tue Sep 16 13:46:31 2025
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -28,7 +28,6 @@
 #include "MW_f2837xD_includes.h"
 #endif                                 /* test_c2000_COMMON_INCLUDES_ */
 
-#include <stddef.h>
 #include "test_c2000_types.h"
 #include <string.h>
 #include "MW_target_hardware_resources.h"
@@ -42,12 +41,8 @@
 #define rtmGetRTWExtModeInfo(rtm)      ((rtm)->extModeInfo)
 #endif
 
-#ifndef rtmGetErrorStatus
-#define rtmGetErrorStatus(rtm)         ((rtm)->errorStatus)
-#endif
-
-#ifndef rtmSetErrorStatus
-#define rtmSetErrorStatus(rtm, val)    ((rtm)->errorStatus = (val))
+#ifndef rtmStepTask
+#define rtmStepTask(rtm, idx)          ((rtm)->Timing.TaskCounters.TID[(idx)] == 0)
 #endif
 
 #ifndef rtmGetStopRequested
@@ -62,25 +57,32 @@
 #define rtmGetStopRequestedPtr(rtm)    (&((rtm)->Timing.stopRequestedFlag))
 #endif
 
-#ifndef rtmGetT
-#define rtmGetT(rtm)                   ((rtm)->Timing.taskTime0)
-#endif
-
 #ifndef rtmGetTFinal
 #define rtmGetTFinal(rtm)              ((rtm)->Timing.tFinal)
 #endif
 
 #ifndef rtmGetTPtr
-#define rtmGetTPtr(rtm)                (&(rtm)->Timing.taskTime0)
+#define rtmGetTPtr(rtm)                (&)
+#endif
+
+#ifndef rtmTaskCounter
+#define rtmTaskCounter(rtm, idx)       ((rtm)->Timing.TaskCounters.TID[(idx)])
 #endif
 
 /* Block signals (default storage) */
 typedef struct {
   real_T PulseGenerator;               /* '<Root>/Pulse Generator' */
+  int32_T Gain;                        /* '<Root>/Gain' */
+  uint16_T ADC1;                       /* '<Root>/ADC1' */
+  int16_T ADC;                         /* '<Root>/ADC' */
 } B_test_c2000_T;
 
 /* Block states (default storage) for system '<Root>' */
 typedef struct {
+  struct {
+    void *LoggedData;
+  } Scope2_PWORK;                      /* '<Root>/Scope2' */
+
   struct {
     void *LoggedData;
   } Scope_PWORK;                       /* '<Root>/Scope' */
@@ -91,7 +93,6 @@ typedef struct {
 
 /* Real-time Model Data Structure */
 struct tag_RTM_test_c2000_T {
-  const char_T *errorStatus;
   RTWExtModeInfo *extModeInfo;
 
   /*
@@ -119,9 +120,12 @@ struct tag_RTM_test_c2000_T {
    * the timing information for the model.
    */
   struct {
-    time_T taskTime0;
     uint32_T clockTick0;
-    time_T stepSize0;
+    uint16_T clockTick1;
+    struct {
+      uint16_T TID[2];
+    } TaskCounters;
+
     time_T tFinal;
     boolean_T stopRequestedFlag;
   } Timing;
@@ -133,13 +137,23 @@ extern B_test_c2000_T test_c2000_B;
 /* Block states (default storage) */
 extern DW_test_c2000_T test_c2000_DW;
 
+/* External function called from main */
+extern void test_c2000_SetEventsForThisBaseStep(boolean_T *eventFlags);
+
 /* Model entry point functions */
 extern void test_c2000_initialize(void);
-extern void test_c2000_step(void);
+extern void test_c2000_step0(void);    /* Sample time: [0.1s, 0.0s] */
+extern void test_c2000_step1(void);    /* Sample time: [15.0s, 0.0s] */
 extern void test_c2000_terminate(void);
 
 /* Real-time Model object */
 extern RT_MODEL_test_c2000_T *const test_c2000_M;
+void InitAdcA (void);
+extern uint16_T MW_adcAInitFlag;
+void config_ADCA_SOC0 (void);
+void InitAdcD (void);
+extern uint16_T MW_adcDInitFlag;
+void config_ADCD_SOC0 (void);
 extern volatile boolean_T stopRequested;
 extern volatile boolean_T runModel;
 

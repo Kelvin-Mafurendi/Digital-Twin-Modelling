@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'test_c2000'.
  *
- * Model version                  : 2.0
+ * Model version                  : 2.28
  * Simulink Coder version         : 25.1 (R2025a) 21-Nov-2024
- * C/C++ source code generated on : Wed Aug 20 14:50:17 2025
+ * C/C++ source code generated on : Tue Sep 16 13:54:40 2025
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -41,14 +41,6 @@
 #define rtmGetRTWExtModeInfo(rtm)      ((rtm)->extModeInfo)
 #endif
 
-#ifndef rtmGetErrorStatus
-#define rtmGetErrorStatus(rtm)         ((rtm)->errorStatus)
-#endif
-
-#ifndef rtmSetErrorStatus
-#define rtmSetErrorStatus(rtm, val)    ((rtm)->errorStatus = (val))
-#endif
-
 #ifndef rtmGetStopRequested
 #define rtmGetStopRequested(rtm)       ((rtm)->Timing.stopRequestedFlag)
 #endif
@@ -71,22 +63,12 @@
 
 /* Block signals (default storage) */
 typedef struct {
-  real_T PulseGenerator;               /* '<Root>/Pulse Generator' */
+  int32_T Gain;                        /* '<Root>/Gain' */
+  int16_T ADC;                         /* '<Root>/ADC' */
 } B_test_c2000_T;
-
-/* Block states (default storage) for system '<Root>' */
-typedef struct {
-  struct {
-    void *LoggedData;
-  } Scope_PWORK;                       /* '<Root>/Scope' */
-
-  int32_T clockTickCounter;            /* '<Root>/Pulse Generator' */
-  int32_T DigitalOutput_FRAC_LEN;      /* '<Root>/Digital Output' */
-} DW_test_c2000_T;
 
 /* Real-time Model Data Structure */
 struct tag_RTM_test_c2000_T {
-  const char_T *errorStatus;
   RTWExtModeInfo *extModeInfo;
 
   /*
@@ -114,7 +96,7 @@ struct tag_RTM_test_c2000_T {
    * the timing information for the model.
    */
   struct {
-    uint16_T clockTick0;
+    uint32_T clockTick0;
     time_T tFinal;
     boolean_T stopRequestedFlag;
   } Timing;
@@ -123,9 +105,6 @@ struct tag_RTM_test_c2000_T {
 /* Block signals (default storage) */
 extern B_test_c2000_T test_c2000_B;
 
-/* Block states (default storage) */
-extern DW_test_c2000_T test_c2000_DW;
-
 /* Model entry point functions */
 extern void test_c2000_initialize(void);
 extern void test_c2000_step(void);
@@ -133,6 +112,9 @@ extern void test_c2000_terminate(void);
 
 /* Real-time Model object */
 extern RT_MODEL_test_c2000_T *const test_c2000_M;
+void InitAdcA (void);
+extern uint16_T MW_adcAInitFlag;
+void config_ADCA_SOC0 (void);
 extern volatile boolean_T stopRequested;
 extern volatile boolean_T runModel;
 

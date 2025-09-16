@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'test_c2000'.
  *
- * Model version                  : 2.0
+ * Model version                  : 2.28
  * Simulink Coder version         : 25.1 (R2025a) 21-Nov-2024
- * C/C++ source code generated on : Wed Aug 20 14:50:17 2025
+ * C/C++ source code generated on : Tue Sep 16 13:54:40 2025
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -52,7 +52,7 @@ volatile boolean_T stopRequested;
 volatile boolean_T runModel;
 int main(void)
 {
-  float modelBaseRate = 15.0;
+  float modelBaseRate = 0.1;
   float systemClock = 200;
   extmodeErrorCode_T errorCode = EXTMODE_SUCCESS;
 
@@ -69,10 +69,10 @@ int main(void)
 #endif
 
   ;
-  rtmSetErrorStatus(test_c2000_M, 0);
+  ((void) 0);
 
   /* Set Final Simulation Time in Ticks */
-  errorCode = extmodeSetFinalSimulationTime((extmodeSimulationTime_T) 6);
+  errorCode = extmodeSetFinalSimulationTime((extmodeSimulationTime_T) 2000);
 
   /* Parse External Mode command line arguments */
   errorCode = extmodeParseArgs(0, NULL);
@@ -102,9 +102,7 @@ int main(void)
 
   globalInterruptDisable();
   configureTimer0(modelBaseRate, systemClock);
-  runModel =
-    !extmodeSimulationComplete()&& !extmodeStopRequested()&&
-    !rtmGetStopRequested(test_c2000_M);
+  runModel = true;
   enableTimer0Interrupt();
   globalInterruptEnable();
   while (runModel) {
@@ -115,10 +113,6 @@ int main(void)
          may be added here */
     }
 
-    stopRequested = !(
-                      !extmodeSimulationComplete()&& !extmodeStopRequested()&&
-                      !rtmGetStopRequested(test_c2000_M));
-    runModel = !(stopRequested);
     if (stopRequested)
       disableTimer0Interrupt();
   }

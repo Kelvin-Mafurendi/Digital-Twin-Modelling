@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'test_c2000'.
  *
- * Model version                  : 2.0
+ * Model version                  : 2.28
  * Simulink Coder version         : 25.1 (R2025a) 21-Nov-2024
- * C/C++ source code generated on : Wed Aug 20 14:50:17 2025
+ * C/C++ source code generated on : Tue Sep 16 13:54:40 2025
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000

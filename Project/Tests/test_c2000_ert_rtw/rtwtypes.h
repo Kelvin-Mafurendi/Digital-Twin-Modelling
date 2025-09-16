@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'test_c2000'.
  *
- * Model version                  : 2.0
+ * Model version                  : 2.28
  * Simulink Coder version         : 25.1 (R2025a) 21-Nov-2024
- * C/C++ source code generated on : Wed Aug 20 14:50:17 2025
+ * C/C++ source code generated on : Tue Sep 16 13:54:40 2025
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -35,7 +35,7 @@
  * Target hardware information
  *   Device type: Texas Instruments->C2000
  *   Number of bits:     char:  16    short:   16    int:  16
- *                       long:  32    long long:  64
+ *                       long:  32
  *                       native word size:  16
  *   Byte ordering: LittleEndian
  *   Signed integer division rounds to: Zero
@@ -56,28 +56,25 @@
  *                                                                       *
  *          int8_T, uint8_T                                              *
  *=======================================================================*/
-typedef int int8_T;
-typedef unsigned int uint8_T;
-typedef int int16_T;
-typedef unsigned int uint16_T;
+typedef short int8_T;
+typedef unsigned short uint8_T;
+typedef short int16_T;
+typedef unsigned short uint16_T;
 typedef long int32_T;
 typedef unsigned long uint32_T;
-typedef long long int64_T;
-typedef unsigned long long uint64_T;
 typedef float real32_T;
 typedef double real64_T;
 
 /*===========================================================================*
  * Generic type definitions: boolean_T, char_T, byte_T, int_T, uint_T,       *
- *                           real_T, time_T, ulong_T, ulonglong_T.           *
+ *                           real_T, time_T, ulong_T.                        *
  *===========================================================================*/
 typedef double real_T;
 typedef double time_T;
-typedef unsigned int boolean_T;
+typedef unsigned short boolean_T;
 typedef int int_T;
 typedef unsigned int uint_T;
 typedef unsigned long ulong_T;
-typedef unsigned long long ulonglong_T;
 typedef char char_T;
 typedef unsigned char uchar_T;
 typedef char_T byte_T;
@@ -144,20 +141,6 @@ typedef struct {
   uint32_T im;
 } cuint32_T;
 
-#define CINT64_T
-
-typedef struct {
-  int64_T re;
-  int64_T im;
-} cint64_T;
-
-#define CUINT64_T
-
-typedef struct {
-  uint64_T re;
-  uint64_T im;
-} cuint64_T;
-
 /*=======================================================================*
  * Min and Max:                                                          *
  *   int8_T, int16_T, int32_T     - signed 8, 16, or 32 bit integers     *
@@ -172,9 +155,6 @@ typedef struct {
 #define MAX_int32_T                    ((int32_T)(2147483647L))
 #define MIN_int32_T                    ((int32_T)(-2147483647L-1L))
 #define MAX_uint32_T                   ((uint32_T)(0xFFFFFFFFUL))
-#define MAX_int64_T                    ((int64_T)(9223372036854775807LL))
-#define MIN_int64_T                    ((int64_T)(-9223372036854775807LL-1LL))
-#define MAX_uint64_T                   ((uint64_T)(0xFFFFFFFFFFFFFFFFULL))
 
 /* Block D-Work pointer type */
 typedef void * pointer_T;

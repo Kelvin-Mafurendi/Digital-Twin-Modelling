@@ -7,9 +7,9 @@
  *
  * Code generation for model "test_c2000".
  *
- * Model version              : 1.3
- * Simulink Coder version : 24.2 (R2024b) 21-Jun-2024
- * C source code generated on : Wed Aug 20 12:15:41 2025
+ * Model version              : 2.27
+ * Simulink Coder version : 25.1 (R2025a) 21-Nov-2024
+ * C source code generated on : Tue Sep 16 13:46:31 2025
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -49,7 +49,7 @@ typedef real_T extmodeClassicTriggerSignal_T;
 #define EXTMODE_MAX_BASE_RATE_SIMULATION_TIME MAX_uint32_T
 
 /** External Mode Step Size in microseconds */
-#define EXTMODE_STEP_SIZE_IN_MICROSECONDS 1000000
+#define EXTMODE_STEP_SIZE_IN_MICROSECONDS 100000
 
 /** External Mode Base rate event id */
 #define EXTMODE_BASE_RATE_EVENT_ID     0

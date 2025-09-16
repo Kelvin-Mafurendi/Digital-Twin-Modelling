@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'test_c2000'.
  *
- * Model version                  : 1.3
- * Simulink Coder version         : 24.2 (R2024b) 21-Jun-2024
- * C/C++ source code generated on : Wed Aug 20 12:15:41 2025
+ * Model version                  : 2.27
+ * Simulink Coder version         : 25.1 (R2025a) 21-Nov-2024
+ * C/C++ source code generated on : Tue Sep 16 13:46:31 2025
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -24,35 +24,87 @@
 #include "MW_target_hardware_resources.h"
 
 volatile int IsrOverrun = 0;
-static boolean_T OverrunFlag = 0;
+boolean_T isRateRunning[2] = { 0, 0 };
+
+boolean_T need2runFlags[2] = { 0, 0 };
+
 void rt_OneStep(void)
 {
   extmodeSimulationTime_T currentTime = (extmodeSimulationTime_T) 0;
+  boolean_T eventFlags[2];
 
-  /* Check for overrun. Protect OverrunFlag against preemption */
-  if (OverrunFlag++) {
+  /* Check base rate for overrun */
+  if (isRateRunning[0]++) {
     IsrOverrun = 1;
-    OverrunFlag--;
+    isRateRunning[0]--;                /* allow future iterations to succeed*/
     return;
   }
 
+  /*
+   * For a bare-board target (i.e., no operating system), the rates
+   * that execute this base step are buffered locally to allow for
+   * overlapping preemption.
+   */
+  test_c2000_SetEventsForThisBaseStep(eventFlags);
   enableTimer0Interrupt();
-  currentTime = (extmodeSimulationTime_T) test_c2000_M->Timing.clockTick0;
-  test_c2000_step();
+  currentTime = (extmodeSimulationTime_T) ((test_c2000_M->Timing.clockTick0 * 1)
+    + 0)
+    ;
+  test_c2000_step0();
 
   /* Get model outputs here */
 
   /* Trigger External Mode event */
   extmodeEvent(0, currentTime);
   disableTimer0Interrupt();
-  OverrunFlag--;
+  isRateRunning[0]--;
+  if (eventFlags[1]) {
+    if (need2runFlags[1]++) {
+      IsrOverrun = 1;
+      need2runFlags[1]--;              /* allow future iterations to succeed*/
+      return;
+    }
+  }
+
+  if (need2runFlags[1]) {
+    if (isRateRunning[1]) {
+      /* Yield to higher priority*/
+      return;
+    }
+
+    isRateRunning[1]++;
+    enableTimer0Interrupt();
+
+    /* Step the model for subrate "1" */
+    switch (1)
+    {
+     case 1 :
+      currentTime = (extmodeSimulationTime_T) ((test_c2000_M->Timing.clockTick1 *
+        150) + 0)
+        ;
+      test_c2000_step1();
+
+      /* Get model outputs here */
+
+      /* Trigger External Mode event */
+      extmodeEvent(1, currentTime);
+      break;
+
+     default :
+      break;
+    }
+
+    disableTimer0Interrupt();
+    need2runFlags[1]--;
+    isRateRunning[1]--;
+  }
 }
 
 volatile boolean_T stopRequested;
 volatile boolean_T runModel;
 int main(void)
 {
-  float modelBaseRate = 1.0;
+  float modelBaseRate = 0.1;
   float systemClock = 200;
   extmodeErrorCode_T errorCode = EXTMODE_SUCCESS;
 
@@ -69,10 +121,10 @@ int main(void)
 #endif
 
   ;
-  rtmSetErrorStatus(test_c2000_M, 0);
+  ((void) 0);
 
   /* Set Final Simulation Time in Ticks */
-  errorCode = extmodeSetFinalSimulationTime((extmodeSimulationTime_T) 10);
+  errorCode = extmodeSetFinalSimulationTime((extmodeSimulationTime_T) 2000);
 
   /* Parse External Mode command line arguments */
   errorCode = extmodeParseArgs(0, NULL);
@@ -102,9 +154,7 @@ int main(void)
 
   globalInterruptDisable();
   configureTimer0(modelBaseRate, systemClock);
-  runModel =
-    !extmodeSimulationComplete()&& !extmodeStopRequested()&&
-    !rtmGetStopRequested(test_c2000_M);
+  runModel = true;
   enableTimer0Interrupt();
   globalInterruptEnable();
   while (runModel) {
@@ -115,10 +165,6 @@ int main(void)
          may be added here */
     }
 
-    stopRequested = !(
-                      !extmodeSimulationComplete()&& !extmodeStopRequested()&&
-                      !rtmGetStopRequested(test_c2000_M));
-    runModel = !(stopRequested);
     if (stopRequested)
       disableTimer0Interrupt();
   }

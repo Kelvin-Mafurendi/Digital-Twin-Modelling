@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'test_c2000'.
  *
- * Model version                  : 2.0
+ * Model version                  : 2.28
  * Simulink Coder version         : 25.1 (R2025a) 21-Nov-2024
- * C/C++ source code generated on : Wed Aug 20 14:50:17 2025
+ * C/C++ source code generated on : Tue Sep 16 13:54:40 2025
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -20,6 +20,15 @@
 #ifndef rtmodel_h_
 #define rtmodel_h_
 #include "test_c2000.h"
+
+/* Macros generated for backwards compatibility  */
+#ifndef rtmGetErrorStatus
+#define rtmGetErrorStatus(rtm)         ((void*) 0)
+#endif
+
+#ifndef rtmSetErrorStatus
+#define rtmSetErrorStatus(rtm, val)    ((void) 0)
+#endif
 #endif                                 /* rtmodel_h_ */
 
 /*

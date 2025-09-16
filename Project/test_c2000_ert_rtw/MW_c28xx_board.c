@@ -78,12 +78,19 @@ void init_board (void)
   IFR = 0x0000U;
   InitPieCtrl();
   InitPieVectTable();
-  initSetGPIOIPC();
+
+  /* Enable global interrupts */
+  EINT;
+  ERTM;
   InitCpuTimers();
 
 #ifdef CPU1
 
   EALLOW;
+
+  /* Assign used ADC modules to CPU1 */
+  DevCfgRegs.CPUSEL11.bit.ADC_A = 0U;
+  DevCfgRegs.CPUSEL11.bit.ADC_D = 0U;
 
 #ifdef MW_DAC_CHANNEL_A
 
@@ -240,6 +247,19 @@ void init_board (void)
   EDIS;
 
 #endif                                 // #ifdef CPU1
+
+  if (MW_adcAInitFlag == 0U) {
+    InitAdcA();
+    MW_adcAInitFlag = 1U;
+  }
+
+  config_ADCA_SOC0 ();
+  if (MW_adcDInitFlag == 0U) {
+    InitAdcD();
+    MW_adcDInitFlag = 1U;
+  }
+
+  config_ADCD_SOC0 ();
 
 #ifdef CPU1
 
